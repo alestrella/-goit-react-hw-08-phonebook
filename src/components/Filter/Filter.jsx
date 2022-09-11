@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filterItem, getFilter } from 'redux/contactsSlice';
 import Box from 'components/Box';
 import { Field, Label } from './Filter.styled';
+import { getFilter, setFilter } from 'redux/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const Filter = () => {
   const filter = useSelector(getFilter);
 
   const handleFilter = e => {
-    dispatch(filterItem(e.target.value.toLocaleLowerCase()));
+    dispatch(setFilter(e.target.value.toLocaleLowerCase()));
   };
 
   return (

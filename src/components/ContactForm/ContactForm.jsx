@@ -11,7 +11,8 @@ import {
   ErrorText,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, getContacts } from 'redux/contactsSlice';
+import { getContacts } from 'redux/contacts/contactsSelectors';
+import { addContact } from 'redux/contacts/contactsOperations';
 
 const contactSchema = Yup.object({
   name: Yup.string()

@@ -1,9 +1,11 @@
 import toast from 'react-hot-toast';
 import Box from 'components/Box';
-import { ContactItem } from './ContactItem';
+import { ContactItem } from '../../ContactItem/ContactItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, getContacts, getFilter } from 'redux/contactsSlice';
 import NotificationText from 'components/NotificationText';
+import { getFilter } from 'redux/filterSlice';
+import { getContacts } from 'redux/contacts/contactsSelectors';
+import { deleteContact } from 'redux/contacts/contactsOperations';
 
 const ContactList = () => {
   const dispatch = useDispatch();
