@@ -23,14 +23,14 @@ const register = createAsyncThunk(
       const { status } = error.response.status;
       switch (status) {
         case 400:
-          return rejectWithValue('This email is already registered');
+          return rejectWithValue('This email is already registered.');
 
         case 500:
-          return rejectWithValue('Something is wrong with connection');
+          return rejectWithValue('Looks like something went wrong.');
 
         default:
           return rejectWithValue(
-            `An unknown error occured, error code: ${status}`
+            `An unknown error occured, error code: ${status}.`
           );
       }
     }
@@ -48,10 +48,10 @@ const logIn = createAsyncThunk(
       const { status } = error.response.status;
       switch (status) {
         case 400:
-          return rejectWithValue('This email is already registered');
+          return rejectWithValue('This email is already registered.');
 
         default:
-          return rejectWithValue('Incorrect name or password');
+          return rejectWithValue('Incorrect name or password.');
       }
     }
   }
@@ -68,29 +68,21 @@ const logOut = createAsyncThunk(
       switch (status) {
         case 401:
           return rejectWithValue(
-            'Access token is missing in the request header'
+            'Access token is missing in the request header.'
           );
 
         case 500:
-          return rejectWithValue('Something is wrong with connection');
+          return rejectWithValue('Looks like something went wrong.');
 
         default:
           return rejectWithValue(
-            `An unknown error occured, error code: ${status}`
+            `An unknown error occured, error code: ${status}.`
           );
       }
     }
   }
 );
-/*
- * GET @ /users/current
- * headers:
- *    Authorization: Bearer token
- *
- * 1. Забираем токен из стейта через getState()
- * 2. Если токена нет, выходим не выполняя никаких операций
- * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
- */
+
 const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, { rejectWithValue, getState }) => {
@@ -111,12 +103,12 @@ const fetchCurrentUser = createAsyncThunk(
       switch (status) {
         case 401:
           return rejectWithValue(
-            'Access token is missing in the request header'
+            'Access token is missing in the request header.'
           );
 
         default:
           return rejectWithValue(
-            `An unknown error occured, error code: ${status}`
+            `An unknown error occured, error code: ${status}.`
           );
       }
     }

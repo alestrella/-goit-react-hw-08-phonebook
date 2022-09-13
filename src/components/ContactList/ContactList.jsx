@@ -1,46 +1,37 @@
-import toast from 'react-hot-toast';
-import Box from 'components/Box';
-import { ContactItem } from '../../ContactItem/ContactItem';
-import { useDispatch, useSelector } from 'react-redux';
-import NotificationText from 'components/NotificationText';
-import { getFilter } from 'redux/filterSlice';
-import { getContacts } from 'redux/contacts/contactsSelectors';
-import { deleteContact } from 'redux/contacts/contactsOperations';
+// import { useMemo } from 'react';
+import NotificationText from 'features/NotificationText';
+import ContactItem from 'components/ContactItem';
+import { useContacts } from 'hooks';
+import { Table } from './ContactList.styled';
+import Box from 'features/Box';
 
 const ContactList = () => {
-  const dispatch = useDispatch();
+  const { contacts, filter } = useContacts();
 
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  // const filteredContacts = useMemo(() => {
+  //   return (
+  //     contacts.filter(({ name }) =>
+  //       name.toLowerCase().includes(filter.toLowerCase())
+  //     ) ?? []
+  //   );
+  // }, [contacts, filter]);
 
   const filterContacts = () =>
-    contacts.filter(({ name }) => name.toLocaleLowerCase().includes(filter));
-
+    contacts.filter(({ name }) =>
+      name.toLowerCase().includes(filter.toLowerCase())
+    );
   const visibleContacts = filterContacts();
-  console.log('filteredContacts :>> ', visibleContacts.length);
-
-  const handleDeleteContact = id => {
-    dispatch(deleteContact(id));
-    toast('Bye... Deleted contact', {
-      icon: '😢',
-    });
-  };
 
   return (
     <>
       {visibleContacts.length > 0 ? (
-        <Box display="flex" flexDirection="column" as="ul">
-          {visibleContacts.map(({ id, name, number }) => {
-            return (
-              <ContactItem
-                key={id}
-                name={name}
-                number={number}
-                handleDelete={() => handleDeleteContact(id)}
-              />
-            );
-          })}
-        </Box>
+        <Table>
+          <Box as="tbody">
+            {visibleContacts.map(contact => (
+              <ContactItem key={contact.id} values={contact} />
+            ))}
+          </Box>
+        </Table>
       ) : (
         <NotificationText message="Sorry, there is no contact by that name. Please try again" />
       )}

@@ -11,10 +11,6 @@ export const Label = styled.label`
   color: ${p => p.theme.colors.text};
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: ${p => p.theme.fontWeights.normal};
-
-  :not(:first-child) {
-    margin-bottom: ${p => p.theme.space[5]}px;
-  }
 `;
 
 export const Input = styled(Field)`
@@ -33,6 +29,7 @@ export const Input = styled(Field)`
 `;
 
 export const Button = styled.button`
+  margin-top: ${p => p.theme.space[5]}px;
   padding: ${p => p.theme.space[3]}px;
   width: 100%;
   color: ${p => p.theme.colors.accent};

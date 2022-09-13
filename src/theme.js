@@ -6,9 +6,9 @@ export const theme = Object.freeze({
     accent: '#BB86FC',
     white: '#fff',
     bg: '#dbe5f8',
-    bgDark: '#121212',
+    bgDark: '#1F1F1F',
     hover: '#00DAC5',
-    input: '#1E1E1E',
+    input: '#131212',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
@@ -38,6 +38,7 @@ export const theme = Object.freeze({
   radii: {
     none: '0',
     normal: '4px',
+    semiMiddle: '10px',
     middle: '20px',
     round: '50%',
   },

@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
-import Box from 'components/Box';
+import Box from 'features/Box';
 
 export const Container = ({ children }) => {
   return (
     <Box
-      maxWidth="650px"
-      p={5}
+      maxWidth="600px"
+      p={6}
       m="0 auto"
+      mb={5}
       boxShadow="card"
-      borderRadius="normal"
+      borderRadius="semiMiddle"
       bg="bgDark"
     >
       {children}

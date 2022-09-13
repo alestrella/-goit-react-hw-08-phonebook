@@ -14,7 +14,7 @@ html, body {
   line-height: ${p => p.theme.lineHeights.body};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #292929;
+  background: #333333;
 }
 
 h1, h2, h3, h4, h5, h6, p {

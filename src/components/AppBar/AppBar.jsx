@@ -1,27 +1,33 @@
+import { RiContactsBookLine } from 'react-icons/ri';
 import { AuthNav } from 'components/AuthNav/AuthNav';
-import Box from 'components/Box/Box.js';
-import { MainHeading } from 'components/Headings/Headings.styled';
+import Box from 'features/Box/Box.js';
+import { MainHeading } from 'features/Headings/Headings.styled';
 import { UserMenu } from 'components/UserMenu/UserMenu.jsx';
-import { Header } from './AppBar.styled.js';
+import { useAuth } from 'hooks';
 
 const AppBar = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <Header>
+    <Box p={4} width="100%" as="header">
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-        maxWidth={1200}
+        maxWidth={960}
         p={5}
         m="0 auto"
         bg="bgDark"
         boxShadow="header"
+        borderRadius="semiMiddle"
       >
-        <MainHeading>Phonebook</MainHeading>
-        <UserMenu />
-        <AuthNav />
+        <MainHeading>
+          <RiContactsBookLine size={26} style={{ marginRight: 16 }} />
+          PhoneBook
+        </MainHeading>
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Box>
-    </Header>
+    </Box>
   );
 };
 

@@ -20,9 +20,10 @@ export const Link = styled(NavLink)`
     background-color: ${p => p.theme.colors.accent};
   }
 
-  :hover,
-  :focus-visible {
+  :hover:not(.active),
+  :focus-visible:not(.active) {
     color: ${p => p.theme.colors.white};
     background-color: ${p => p.theme.colors.accent};
+    transform: scale(1.04);
   }
 `;

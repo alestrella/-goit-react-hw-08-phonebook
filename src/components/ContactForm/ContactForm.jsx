@@ -2,7 +2,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import NumberFormat from 'react-number-format';
 import toast from 'react-hot-toast';
-import { nanoid } from 'nanoid';
 import {
   Button,
   Label,
@@ -10,9 +9,9 @@ import {
   FormStyled,
   ErrorText,
 } from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contacts/contactsSelectors';
+import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations';
+import { useContacts } from 'hooks';
 
 const contactSchema = Yup.object({
   name: Yup.string()
@@ -43,27 +42,26 @@ export const ContactForm = () => {
   };
 
   const dispatch = useDispatch();
-  const NameList = useSelector(getContacts).map(contact =>
-    contact.name.toLowerCase()
-  );
+  const { contacts } = useContacts();
+  const NameList = contacts.map(contact => contact.name.toLowerCase());
 
   const handleSubmit = ({ name, number }, { resetForm }) => {
-    const checkDuplicateContact = name => {
+    const checkContactExist = name => {
       if (NameList.includes(name.toLowerCase())) {
         toast.error(`${name} is already in contacts`);
         return true;
       }
     };
 
-    if (checkDuplicateContact(name)) {
+    if (checkContactExist(name)) {
       return;
     }
 
     const newContact = {
-      id: nanoid(),
       name,
       number,
     };
+
     dispatch(addContact(newContact));
     resetForm();
     toast.success('New contact added');

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { ButtonStyled } from './IconButton.styled';
 
-const IconButton = ({ children, onClick }) => (
-  <ButtonStyled type="button" onClick={onClick}>
+const IconButton = ({ children, onClick, title }) => (
+  <ButtonStyled type="button" title={title} onClick={onClick}>
     {children}
   </ButtonStyled>
 );
@@ -13,8 +13,9 @@ IconButton.defaultProps = {
 };
 
 IconButton.propsTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.node,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string,
 };
 
 export default IconButton;

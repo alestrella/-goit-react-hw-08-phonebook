@@ -1,28 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
-import Box from 'components/Box';
+import { useDispatch } from 'react-redux';
 import { Field, Label } from './Filter.styled';
-import { getFilter, setFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/contacts/contactsSlice';
+import { useContacts } from 'hooks';
 
 const Filter = () => {
   const dispatch = useDispatch();
 
-  const filter = useSelector(getFilter);
+  const { filter } = useContacts();
 
   const handleFilter = e => {
-    dispatch(setFilter(e.target.value.toLocaleLowerCase()));
+    dispatch(setFilter(e.target.value));
   };
 
   return (
-    <Box mb={5}>
-      <Label>
-        Find contacts by name
-        <Field
-          value={filter}
-          onChange={handleFilter}
-          placeholder="Enter name"
-        />
-      </Label>
-    </Box>
+    <Label>
+      Find contacts by name
+      <Field value={filter} onChange={handleFilter} placeholder="Enter name" />
+    </Label>
   );
 };
 
